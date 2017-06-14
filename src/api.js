@@ -8,6 +8,8 @@ module.exports = async function getCurrencies() {
     return rates
 }
 
+
+
 // const p = new Promise((resolve, reject) => {
 //     const result = 14
 //     if (result < 12) {

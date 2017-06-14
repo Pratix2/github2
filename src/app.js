@@ -8,7 +8,7 @@ function handleError(err, res) {
 }
 
 app.set('view engine', 'pug')
-app.use(express.static(__dirname + "/public"))
+app.use(express.static("./public"))
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'My Website', message: 'Hello there!'})
@@ -28,18 +28,18 @@ app.get('/other', (req, res) => {
 
 app.get(`/exchange-rate`, (req, res) => {
   oxrApi().then(result => {
-    res.render('exchange-rate', { title: 'Exchange Rate', rates: result })
+    res.render('exchange-rate', { title: 'Exchange Rate', rates: result})
   }).catch(err => handleError(err, res))
 })
 
-app.get(`/exchange-rate-async`, async (req, res) => {
-  try {
-    const result = await oxrApi()
-    res.render('exchange-rate', { title: 'Exchange Rate', rates: result })
-  } catch (e) {
-    handleError(e, res)
-  }
-})
+// app.get(`/exchange-rate-async`, async (req, res) => {
+//   try {
+//     const result = await oxrApi()
+//     res.render('exchange-rate', { title: 'Exchange Rate', rates: result })
+//   } catch (e) {
+//     handleError(e, res)
+//   }
+// })
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')

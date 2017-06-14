@@ -1,0 +1,2 @@
+module.exports.oxrApiKey = 'ba1d5af91cd14973b707b940f060113f'
+module.exports.yelpClientSecret = 'IAFrhBucb0VGDMQCZp60GFVwlrBu95Rqyyky2jynqPED9cAJUhC4FlHdTViHQA7e'

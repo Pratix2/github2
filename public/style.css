@@ -11,7 +11,6 @@ body {
     background-size: cover;
     -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
     box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-    min-width: 50vh;
 }
 
 .head {
@@ -102,7 +101,7 @@ body {
 
 .foreGround {
     background-color: #adb9cc;
-    height: 940px;
+    height: 1040px;
     font-size: 45px;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
@@ -204,4 +203,8 @@ p {
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.error {
+    text-align: center; 
 }
