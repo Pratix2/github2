@@ -1,9 +1,11 @@
 const express = require('express')
-const oxrApi = require('./api')
+const oxrApi = require('./oxr')
+const yelpApi = require('./yelp')
 const app = express()
 const router = express.Router()
 
 function handleError(err, res) {
+  console.error(err)
   res.render(`error`, { error: err })
 }
 
@@ -29,6 +31,16 @@ app.get('/other', (req, res) => {
 app.get(`/exchange-rate`, (req, res) => {
   oxrApi().then(result => {
     res.render('exchange-rate', { title: 'Exchange Rate', rates: result})
+  }).catch(err => handleError(err, res))
+})
+
+app.get(`/yelp-api`, (req, res) => {
+  yelpApi({
+    term: "Fashion Stylist", 
+    location: "New York, New York",
+    limit: 10
+  }).then(businesses => { 
+    res.render('yelp-api', { title: 'Yelp Api', businesses })
   }).catch(err => handleError(err, res))
 })
 

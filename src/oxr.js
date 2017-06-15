@@ -10,6 +10,7 @@ module.exports = async function getCurrencies() {
 
 
 
+
 // const p = new Promise((resolve, reject) => {
 //     const result = 14
 //     if (result < 12) {

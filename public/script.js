@@ -11,4 +11,7 @@
     }
 
     window.onscroll = testScroll
+
+
+    function inverseCurrency()
 })()
