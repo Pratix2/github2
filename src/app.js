@@ -1,6 +1,7 @@
 const express = require('express')
 const oxrApi = require('./oxr')
-const yelpApi = require('./yelp')
+const { yelpAPI } = require('./yelp')
+const { fusionQuery } = require('./yelp')
 const app = express()
 const router = express.Router()
 
@@ -35,23 +36,17 @@ app.get(`/exchange-rate`, (req, res) => {
 })
 
 app.get(`/yelp-api`, (req, res) => {
-  yelpApi({
-    term: "Fashion Stylist", 
-    location: "New York, New York",
-    limit: 10
-  }).then(businesses => { 
-    res.render('yelp-api', { title: 'Yelp Api', businesses })
+  if (Object.keys(req.query).length === 0) {
+    res.render('yelp-api', {
+      title: 'Yelp API',
+      businesses: [],
+      form: {}
+    })
+  }
+  yelpAPI(req.query).then(data => {
+    res.render('yelp-api', { title: 'Test', businesses: data.businesses, form: req.query })
   }).catch(err => handleError(err, res))
 })
-
-// app.get(`/exchange-rate-async`, async (req, res) => {
-//   try {
-//     const result = await oxrApi()
-//     res.render('exchange-rate', { title: 'Exchange Rate', rates: result })
-//   } catch (e) {
-//     handleError(e, res)
-//   }
-// })
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')

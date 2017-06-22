@@ -1,22 +1,35 @@
 extends _layout
 
 block content
-    div.head
-        div.class
-        ul.navigation  
-            li
-            a(href='/') Main Menu
-            li 
-            a(href='/about-us') About Me
-            li
-            a(href='/contact-us') Contact
-            li
-            a(href="/other") Other
-            li
-            a(href='/exchange-rate') Exchange Rate
-    ul
-        each business in businesses
-            li= business.name
+    div.mainChunk
+        h3 Pratix Parikh
+        p  Yelp Search API
+        div(class="container")
+            div(class="col")
+                div(class='row')
+                    div(class="container1")
+                        form(class='form-inline' method='GET')
+                            table.table1
+                                tr.Row1
+                                    th What are you looking for?
+                                    th Where are you looking?
+                                    th How many should we find?
+                                    th(rowspan='2') 
+                                        button(type="submit" class="btn btn-primary") Search
+                                tr.Row2
+                                    td
+                                        input(type="text" name="term" value=`${form.term || ""}` placeholder=`Term`)
+                                    td
+                                        input(type="text" name="location" value=`${form.location || ""}` placeholder=`Location`)
+                                    td 
+                                        input(type="text" name="limit" value=`${form.limit || ""}` placeholder=`Limit`)
+                div(class='row')
+                    if businesses.length > 0
+                        table.table
+                            th Business
+                                each business in businesses
+                                    tr
+                                        td= business.name
 
 block page-scripts
     script(defer src="/script.js")
