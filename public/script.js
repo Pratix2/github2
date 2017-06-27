@@ -1,4 +1,4 @@
-(function() {
+(function() {    
     var intFrameHeight = window.innerHeight;
        
     function testScroll(ev) {
@@ -11,9 +11,4 @@
     }
 
     window.onscroll = testScroll
-
-
-    function setTerm() {
-        var term = document.getElementById("yelpTerm").value
-    }
 })()

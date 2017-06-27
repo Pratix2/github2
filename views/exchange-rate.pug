@@ -1,14 +1,43 @@
 extends _layout
 
-block content
-    div.mainChunk
+block content   
+    div.containerMain
         h3 Pratix Parikh
         p  Exchange Rate API
-        ul.currency
-            each rate, currencyCode in rates
-                li
-                    strong= `${currencyCode}: `
-                    span= rate
-
+        div(class='containerOXRAPI')
+            div(class='row')
+                div(class='col')
+                    div(class="containerOXR d-flex")
+                        form(class='form-inline2' method='GET')
+                            table.CurrencyForm-r
+                                thead
+                                    tr.currencyFormRow1
+                                        th.CurrencyFormText Enter USD
+                                        th(rowspan="2" class="currencyRowButton")
+                                            button(type="submit" class="btn btn-primary") Search
+                                tbody
+                                    tr.currencyFormRow2
+                                        td.currencyRowInput
+                                            input(type="text" class="inputForm" name="dollars" value=`${form.dollars || ""}` placeholder=`Dollars`)
+            div(class="exchangeRateOutput")
+                table.table.currencyTable-r
+                    thead
+                        tr.currencyHead
+                            th.currencyHead-r Currency Code
+                            th.currencyHead-r Exchange Rate
+                            th.currencyHead-r Result
+                    tbody
+                        each rate, currencyCode in rates
+                            tr.currencyBody
+                                td=currencyCode
+                                - var InverseRate =(1/rate).toFixed(5)
+                                td=`$${InverseRate}`   
+                                 -  var symbol = getSymbolFromCurrency(currencyCode)
+                                 -   if (symbol === undefined) {
+                                 -       var symbol = ""} 
+                                 -  else {
+                                 -      symbol = getSymbolFromCurrency(currencyCode)}     
+                                 -  var rate = (rate * form.dollars).toFixed(5)
+                                td= `${symbol} ${rate}`
 block page-scripts
     script(defer src="/script.js")

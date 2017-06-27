@@ -1,25 +1,26 @@
 extends _layout
 
 block content
-    div.mainChunk
+    div.containerMain
       h3 Pratix Parikh
       p Contact Me
+      
       div.contactInfo
         p I am available on all social media so you can find me literally everywhere! I mainly frequent LinkedIn, Facebook, Instagram and Twitter. <br> For business inquiries please contact me by my email: Pratix98@gmail.com. <br> Below are links to all my social media accounts, feel free to message me there!
-      div.contactTable
-        table.wholeTable
+      
+      div.contactTableWrap-r
+        table.contactTable-r
           tr.tableHead 
-            th.site LinkedIn
-            th.site Facebook
-            th.site Instagram
-            th.site Twitter
+            th.siteName LinkedIn
+            th.siteName Facebook
+            th.siteName Instagram
+            th.siteName Twitter
           tr.tableBody
-            td.site Link: 
-            td.site Link: 
-            td.site Link:
-            td.site Link:
-          tr.tableBody
-            td.site Image:
-            td.site Image:
-            td.site Image:
-            td.site Image:
+            td.siteLink
+              a(href="www.google.com") LinkedIn Link
+            td.siteLink
+              a(href='www.google.com') Facebook Link
+            td.siteLink
+              a(href='www.google.com') Instagram Link
+            td.siteLink
+              a(href='www.google.com') Twitter Link

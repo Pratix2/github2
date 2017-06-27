@@ -4,7 +4,8 @@ const { yelpAPI } = require('./yelp')
 const { fusionQuery } = require('./yelp')
 const app = express()
 const router = express.Router()
-
+const getSymbolFromCurrency = require('currency-symbol-map')
+ 
 function handleError(err, res) {
   console.error(err)
   res.render(`error`, { error: err })
@@ -29,9 +30,23 @@ app.get('/other', (req, res) => {
   res.render('other', {title: "Other"})
 })
 
+// app.get(`/exchange-rate`, (req, res) => {
+//   oxrApi().then(result => {
+//     res.render('exchange-rate', { title: 'Exchange Rate', rates: result, getSymbolFromCurrency })
+//   }).catch(err => handleError(err, res))
+// })
+
 app.get(`/exchange-rate`, (req, res) => {
-  oxrApi().then(result => {
-    res.render('exchange-rate', { title: 'Exchange Rate', rates: result})
+  if (Object.keys(req.query).length === 0) {
+    res.render('exchange-rate', {
+      title: 'Exchange Rate',
+      rates: [],
+      form: {}, 
+      getSymbolFromCurrency
+    })
+  }
+  oxrApi(req.query).then(result => {
+    res.render('exchange-rate', { title: 'Exchange Rate', rates: result, form: req.query, getSymbolFromCurrency })
   }).catch(err => handleError(err, res))
 })
 
@@ -44,7 +59,7 @@ app.get(`/yelp-api`, (req, res) => {
     })
   }
   yelpAPI(req.query).then(data => {
-    res.render('yelp-api', { title: 'Test', businesses: data.businesses, form: req.query })
+    res.render('yelp-api', { title: 'Yelp API', businesses: data.businesses, form: req.query })
   }).catch(err => handleError(err, res))
 })
 

@@ -5,6 +5,7 @@ module.exports = async function getCurrencies() {
     const res = await axios.get(`https://openexchangerates.org/api/latest.json?app_id=${oxrApiKey}`)
     const { data = {} } = res
     const { rates = {} } = data
+    console.log(rates)
     return rates
 }
 
