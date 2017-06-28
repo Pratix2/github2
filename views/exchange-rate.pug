@@ -4,21 +4,16 @@ block content
     div.containerMain
         h3 Pratix Parikh
         p  Exchange Rate API
-        div(class='containerOXRAPI')
-            div(class='row')
-                div(class='col')
-                    div(class="containerOXR d-flex")
-                        form(class='form-inline2' method='GET')
-                            table.CurrencyForm-r
-                                thead
-                                    tr.currencyFormRow1
-                                        th.CurrencyFormText Enter USD
-                                        th(rowspan="2" class="currencyRowButton")
-                                            button(type="submit" class="btn btn-primary") Search
-                                tbody
-                                    tr.currencyFormRow2
-                                        td.currencyRowInput
-                                            input(type="text" class="inputForm" name="dollars" value=`${form.dollars || ""}` placeholder=`Dollars`)
+        div.containerOXRAPI
+            form.form-inline2.pb-4(method='GET')
+                div.searchForm.w-25.d-flex.flex-row.justify-content-between
+                    div.inputBox.d-flex.flex-column.justify-content-around
+                        div.searchFormTextBox.py-2.px-3 Enter USD
+                        div.searchFormInput.py-2.px-3
+                            input(type="text" class="inputForm" name="dollars" value=`${form.dollars || ""}` placeholder=`Dollars`)
+                    div.searchButtonBox.py-2.px-3.d-flex.flex-column.justify-content-center
+                        div.searchButton
+                            button(type="submit" class="btn btn-primary") Search
             div(class="exchangeRateOutput")
                 table.table.currencyTable-r
                     thead
