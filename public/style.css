@@ -339,6 +339,7 @@ h4 {
     border: solid 2px rgb(236, 238, 239);
     border-radius: 5px;   
     box-shadow: -7px 6px 17px 0px rgba(214,214,214,0.87);
+    width:auto;
 }
 
 .termBoxText, .termBoxInput, .locationBoxText, .locationBoxInput, .limitBoxText, .limitBoxInput, .priceBoxText, .priceBoxInput {
@@ -351,5 +352,12 @@ h4 {
 
 .limitBox {
     border-left: solid 2px rgb(236, 238, 239);
-    border-right: solid 2px rgb(236, 238, 239); 
+}
+
+.priceBox {
+     border-left: solid 2px rgb(236, 238, 239);   
+}
+
+.buttonBox {
+    padding-left: 40px;
 }

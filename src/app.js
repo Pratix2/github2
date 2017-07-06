@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const oxrApi = require('./oxr')
 const { yelpAPI } = require('./yelp')
 const { fusionQuery } = require('./yelp')
@@ -13,6 +14,7 @@ function handleError(err, res) {
 
 app.set('view engine', 'pug')
 app.use(express.static("./public"))
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'My Website', message: 'Hello there!'})
@@ -51,16 +53,28 @@ app.get(`/exchange-rate`, (req, res) => {
 })
 
 app.get(`/yelp-api`, (req, res) => {
-  if (Object.keys(req.query).length === 0) {
-    res.render('yelp-api', {
-      title: 'Yelp API',
-      businesses: [],
-      form: {}
+  if (req.headers.accept === `application/json`) {
+    yelpAPI(req.query).then(data => {
+      res.send(data)
+    }).catch(err => {
+      res.send(err)
     })
+  } else {
+    if (Object.keys(req.query).length === 0) {
+      res.render('yelp-api', {
+        title: 'Yelp API',
+        businesses: [],
+        form: {}
+      })
+    }
+    yelpAPI(req.query).then(data => {
+      res.render('yelp-api', { title: 'Yelp API', businesses: data.businesses, form: req.query })
+    }).catch(err => handleError(err, res))
   }
-  yelpAPI(req.query).then(data => {
-    res.render('yelp-api', { title: 'Yelp API', businesses: data.businesses, form: req.query })
-  }).catch(err => handleError(err, res))
+})
+
+app.get('/vue-demo', (req, res) => {
+  res.render('vue-demo', { title: "Vue Demo"})
 })
 
 app.listen(3000, () => {
