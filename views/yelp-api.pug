@@ -33,35 +33,35 @@ block content
                                             option(value='4') $$$$
                         div.buttonBox.d-flex.flex-column.justify-content-around.mr-2
                             button(type="submit" class="btn btn-primary") Search
-            div.businessOutput.pt-4.w-50.mx-auto
-                if businesses.length > 0
-                    table.table.businessTable-r
-                        th.businessHead-r Business 
-                        each business in businesses
-                            - if(value == '1') {
-                                - if(business.price == "$" || business.price == "$$" || business.price == "$$$" || business.price == "$$$$") {
-                                    tr.businessRow-r
-                                        td= business.name
-                                    -}
-                                -}
-                            - else if(value == '2') {
-                                - if (business.price == "$$" || business.price == "$$$" || business.price == "$$$$") {
-                                    tr.businessRow-r
-                                        td= business.name
-                                -}
-                            -}
-                            - else if(value == '3') {
-                                - if (business.price == "$$$" || business.price == "$$$$") {
-                                    tr.businessRow-r
-                                        td= business.name
-                                -}
-                            -}
-                            - else if {
-                                - if (business.price == "$$$$") {
-                                    tr.businessRow-r
-                                        td= business.name
-                                -}
-                            -} 
+            //- div.businessOutput.pt-4.w-50.mx-auto
+            //-     if businesses.length > 0
+            //-         table.table.businessTable-r
+            //-             th.businessHead-r Business 
+            //-             each business in businesses
+            //-                 - if(value == '1') {
+            //-                     - if(business.price == "$" || business.price == "$$" || business.price == "$$$" || business.price == "$$$$") {
+            //-                         tr.businessRow-r
+            //-                             td= business.name
+            //-                         -}
+            //-                     -}
+            //-                 - else if(value == '2') {
+            //-                     - if (business.price == "$$" || business.price == "$$$" || business.price == "$$$$") {
+            //-                         tr.businessRow-r
+            //-                             td= business.name
+            //-                     -}
+            //-                 -}
+            //-                 - else if(value == '3') {
+            //-                     - if (business.price == "$$$" || business.price == "$$$$") {
+            //-                         tr.businessRow-r
+            //-                             td= business.name
+            //-                     -}
+            //-                 -}
+            //-                 - else if {
+            //-                     - if (business.price == "$$$$") {
+            //-                         tr.businessRow-r
+            //-                             td= business.name
+            //-                     -}
+            //-                 -} 
 
 block page-scripts
     script(defer src="/script.js")
