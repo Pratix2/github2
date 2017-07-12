@@ -32,12 +32,6 @@ app.get('/other', (req, res) => {
   res.render('other', {title: "Other"})
 })
 
-// app.get(`/exchange-rate`, (req, res) => {
-//   oxrApi().then(result => {
-//     res.render('exchange-rate', { title: 'Exchange Rate', rates: result, getSymbolFromCurrency })
-//   }).catch(err => handleError(err, res))
-// })
-
 app.get(`/exchange-rate`, (req, res) => {
   if (Object.keys(req.query).length === 0) {
     res.render('exchange-rate', {

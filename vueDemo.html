@@ -8,8 +8,14 @@
   </head>
   <body>
     <div id="app">
-      <p>{{ message }}</p>
+      <button v-on:click="show = !show">
+        Toggle
+      </button>
+      <transition name="fade">
+        <p v-if="show">hello</p>
+      </transition>
     </div>
+    
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="public/vueDemo.js"></script>
